@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "securitas-messages"
+version = "0.0.1"
+description = "Fedora Messaging message schemas for Securitas."
+
+license = "MIT"
+
+authors = [
+  "Fedora Infrastructure <admin@fedoraproject.org>"
+]
+
+# readme = 'README.md'  # Markdown files are supported
+
+repository = "https://github.com/fedora-infra/securitas-messages"
+homepage = "https://github.com/fedora-infra/securitas-messages"
+
+keywords = ['security']
+
+[tool.poetry.dependencies]
+python = "^3.6"
+fedora-messaging = "^2.0.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3"
+pytest-cov = "^2.8"
+sphinx = "^2.3"
+mock = "^3.0"
+bandit = "^1.6"
+black = {version = "^18.3-alpha.0", allow-prereleases = true}
+flake8 = "^3.7"
+
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"

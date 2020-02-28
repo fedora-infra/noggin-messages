@@ -1,0 +1,17 @@
+[run]
+branch = True
+source =
+    securitas_messages
+
+[paths]
+source =
+   securitas_messages
+   .tox/*/site-packages/securitas_messages
+
+[report]
+fail_under = 100
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+omit =
+    securitas_messages/tests/*
