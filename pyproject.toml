@@ -16,6 +16,9 @@ homepage = "https://github.com/fedora-infra/securitas-messages"
 
 keywords = ['security']
 
+[tool.poetry.plugins."fedora.messages"]
+"securitas.group.member.sponsor.v1"="securitas_messages:MemberSponsorV1"
+
 [tool.poetry.dependencies]
 python = "^3.6"
 fedora-messaging = "^2.0.1"
