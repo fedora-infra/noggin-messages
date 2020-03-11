@@ -24,3 +24,27 @@ class MemberSponsorV1(message.Message):
             }
         },
     }
+
+
+class UserCreateV1(message.Message):
+    """The message sent when a user is created"""
+
+    topic = "fas.user.create"
+    body_schema = {
+        "id": "http://fedoraproject.org/message-schema/securtitas",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "The message sent when a user is created",
+        "type": "object",
+        "required": ["msg"],
+        "properties": {
+            "msg": {
+                "required": ["agent", "user"],
+                "description": "an object",
+                "type": "object",
+                "properties": {
+                    "agent": {"type": "string"},
+                    "user": {"type": "string"},
+                },
+            }
+        },
+    }
