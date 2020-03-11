@@ -18,6 +18,8 @@ keywords = ['security']
 
 [tool.poetry.plugins."fedora.messages"]
 "securitas.group.member.sponsor.v1"="securitas_messages:MemberSponsorV1"
+"securitas.user.create.v1"="securitas_messages:UserCreateV1"
+
 
 [tool.poetry.dependencies]
 python = "^3.6"
