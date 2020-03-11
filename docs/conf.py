@@ -15,12 +15,12 @@
 #
 # sys.path.insert(0, os.path.abspath("../"))  # NOQA
 #
-# import securitas_messages
+# import noggin_messages
 
 
 # -- Project information -----------------------------------------------------
 
-project = "Fedora Messaging message schemas for Securitas"
+project = "Fedora Messaging message schemas for Noggin"
 copyright = "2020, Red Hat, Inc"
 author = "Fedora Infrastructure"
 
@@ -67,7 +67,7 @@ html_theme = "alabaster"
 # documentation.
 html_theme_options = {
     "github_user": "fedora-infra",
-    "github_repo": "securitas-messages",
+    "github_repo": "noggin-messages",
     "page_width": "1040px",
     "show_related": True,
     "sidebar_collapse": True,

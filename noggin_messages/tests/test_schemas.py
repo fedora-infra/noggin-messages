@@ -1,10 +1,10 @@
-from securitas_messages import MemberSponsorV1, UserCreateV1
+from noggin_messages import MemberSponsorV1, UserCreateV1
 from fedora_messaging import message
 import json
 
 
 class TestSchema:
-    """Unit tests for testing the securitas message schemas."""
+    """Unit tests for testing the noggin message schemas."""
 
     def test_member_sponsor_v1(self):
         """
@@ -21,7 +21,7 @@ class TestSchema:
             }
         },
         "headers": {
-            "fedora_messaging_schema": "securitas.group.member.sponsor.v1",
+            "fedora_messaging_schema": "noggin.group.member.sponsor.v1",
             "fedora_messaging_severity": 20,
             "sent-at": "2020-03-02T08:53:38+00:00"
         },
@@ -43,7 +43,7 @@ class TestSchema:
         assert msg_dump["body"]["msg"]["group"] == "developers"
         assert (
             msg_dump["headers"]["fedora_messaging_schema"]
-            == "securitas.group.member.sponsor.v1"
+            == "noggin.group.member.sponsor.v1"
         )
         assert msg_dump["topic"] == "fas.group.member.sponsor"
 
@@ -61,7 +61,7 @@ class TestSchema:
             }
         },
         "headers": {
-            "fedora_messaging_schema": "securitas.user.create.v1",
+            "fedora_messaging_schema": "noggin.user.create.v1",
             "fedora_messaging_severity": 20,
             "sent-at": "2020-03-02T08:53:38+00:00"
         },
@@ -78,7 +78,5 @@ class TestSchema:
         msg_dump = json.loads(message.dumps(msg))
         assert msg_dump["body"]["msg"]["agent"] == "dudemcpants"
         assert msg_dump["body"]["msg"]["user"] == "testuser"
-        assert (
-            msg_dump["headers"]["fedora_messaging_schema"] == "securitas.user.create.v1"
-        )
+        assert msg_dump["headers"]["fedora_messaging_schema"] == "noggin.user.create.v1"
         assert msg_dump["topic"] == "fas.user.create"
