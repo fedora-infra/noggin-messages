@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "securitas-messages"
+name = "noggin-messages"
 version = "0.0.1"
-description = "Fedora Messaging message schemas for Securitas."
+description = "Fedora Messaging message schemas for Noggin."
 
 license = "MIT"
 
@@ -11,14 +11,14 @@ authors = [
 
 # readme = 'README.md'  # Markdown files are supported
 
-repository = "https://github.com/fedora-infra/securitas-messages"
-homepage = "https://github.com/fedora-infra/securitas-messages"
+repository = "https://github.com/fedora-infra/noggin-messages"
+homepage = "https://github.com/fedora-infra/noggin-messages"
 
 keywords = ['security']
 
 [tool.poetry.plugins."fedora.messages"]
-"securitas.group.member.sponsor.v1"="securitas_messages:MemberSponsorV1"
-"securitas.user.create.v1"="securitas_messages:UserCreateV1"
+"noggin.group.member.sponsor.v1"="noggin_messages:MemberSponsorV1"
+"noggin.user.create.v1"="noggin_messages:UserCreateV1"
 
 
 [tool.poetry.dependencies]
