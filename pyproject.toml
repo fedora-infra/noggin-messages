@@ -26,7 +26,7 @@ python = "^3.6"
 fedora-messaging = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.3"
+pytest = "^5.4"
 pytest-cov = "^2.8"
 sphinx = "^2.3"
 mock = "^3.0"
