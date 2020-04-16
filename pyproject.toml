@@ -28,7 +28,7 @@ fedora-messaging = "^2.0.1"
 [tool.poetry.dev-dependencies]
 pytest = "^5.3"
 pytest-cov = "^2.8"
-sphinx = "^2.3"
+sphinx = "^3.0"
 mock = "^4.0"
 bandit = "^1.6"
 black = {version = "^19.10b0", allow-prereleases = true}
