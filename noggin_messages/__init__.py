@@ -6,7 +6,7 @@ class MemberSponsorV1(message.Message):
 
     topic = "fas.group.member.sponsor"
     body_schema = {
-        "id": "http://fedoraproject.org/message-schema/securtitas",
+        "id": "http://fedoraproject.org/message-schema/noggin",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "The message sent when a user is added to a group by a sponsor",
         "type": "object",
@@ -31,7 +31,7 @@ class UserCreateV1(message.Message):
 
     topic = "fas.user.create"
     body_schema = {
-        "id": "http://fedoraproject.org/message-schema/securtitas",
+        "id": "http://fedoraproject.org/message-schema/noggin",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "The message sent when a user is created",
         "type": "object",
