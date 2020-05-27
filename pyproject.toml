@@ -19,6 +19,7 @@ keywords = ['security']
 [tool.poetry.plugins."fedora.messages"]
 "noggin.group.member.sponsor.v1"="noggin_messages:MemberSponsorV1"
 "noggin.user.create.v1"="noggin_messages:UserCreateV1"
+"noggin.user.update.v1"="noggin_messages:UserUpdateV1"
 
 
 [tool.poetry.dependencies]

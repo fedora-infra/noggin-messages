@@ -48,3 +48,28 @@ class UserCreateV1(message.Message):
             }
         },
     }
+
+
+class UserUpdateV1(message.Message):
+    """The message sent when a user is updated"""
+
+    topic = "fas.user.update"
+    body_schema = {
+        "id": "http://fedoraproject.org/message-schema/noggin",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "The message sent when a user is updated",
+        "type": "object",
+        "required": ["msg"],
+        "properties": {
+            "msg": {
+                "required": ["agent", "user", "fields"],
+                "description": "an object",
+                "type": "object",
+                "properties": {
+                    "agent": {"type": "string"},
+                    "user": {"type": "string"},
+                    "fields": {"type": "array", "contains": {"type": "string",},},
+                },
+            },
+        },
+    }
