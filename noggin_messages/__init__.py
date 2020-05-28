@@ -14,7 +14,7 @@ class MemberSponsorV1(message.Message):
         "properties": {
             "msg": {
                 "required": ["agent", "user", "group"],
-                "description": "an object",
+                "description": "the contents of the event",
                 "type": "object",
                 "properties": {
                     "agent": {"type": "string"},
@@ -39,7 +39,7 @@ class UserCreateV1(message.Message):
         "properties": {
             "msg": {
                 "required": ["agent", "user"],
-                "description": "an object",
+                "description": "the contents of the event",
                 "type": "object",
                 "properties": {
                     "agent": {"type": "string"},
@@ -63,7 +63,7 @@ class UserUpdateV1(message.Message):
         "properties": {
             "msg": {
                 "required": ["agent", "user", "fields"],
-                "description": "an object",
+                "description": "the contents of the event",
                 "type": "object",
                 "properties": {
                     "agent": {"type": "string"},
