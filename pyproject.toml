@@ -16,6 +16,12 @@ homepage = "https://github.com/fedora-infra/noggin-messages"
 
 keywords = ['security']
 
+include = [
+    "tox.ini",
+    "docs/*",
+    "docs/*/*",
+]
+
 [tool.poetry.plugins."fedora.messages"]
 "noggin.group.member.sponsor.v1"="noggin_messages:MemberSponsorV1"
 "noggin.user.create.v1"="noggin_messages:UserCreateV1"
