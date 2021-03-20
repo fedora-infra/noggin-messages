@@ -68,7 +68,12 @@ class UserUpdateV1(message.Message):
                 "properties": {
                     "agent": {"type": "string"},
                     "user": {"type": "string"},
-                    "fields": {"type": "array", "contains": {"type": "string",},},
+                    "fields": {
+                        "type": "array",
+                        "contains": {
+                            "type": "string",
+                        },
+                    },
                 },
             },
         },
