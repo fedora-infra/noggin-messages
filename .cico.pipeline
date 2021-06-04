@@ -7,7 +7,7 @@
  * A useful list of plugins can be found here: https://jenkins.io/doc/pipeline/steps/.
  *
  * For reference, this is the source of the fedoraInfraTox() macro that runs
- * tox on mutiple Fedora releases:
+ * tox on mutiple Fedora and CentOS releases:
  * https://github.com/centosci/cico-shared-library/blob/master/vars/fedoraInfraTox.groovy
  */
 
@@ -17,13 +17,13 @@
  * Distros we want to test on
  */
 //def ACTIVE_DISTROS = ["f31", "f32", "epel7", "rawhide"]
-def ACTIVE_DISTROS = ["f32", "f33", "latest"]
+def ACTIVE_DISTROS = ["f33", "f34", "epel7", "latest"]
 
 
 
 
 def stages = [:]
-def fedora_containers = [
+def containers = [
                 containerTemplate(name: 'jnlp',
                                   image: "quay.io/centosci/cico-workspace:latest",
                                   ttyEnabled: false,
@@ -31,20 +31,20 @@ def fedora_containers = [
                                   workingDir: "/workdir")
 ]
 
-ACTIVE_DISTROS.each { fedora ->
-    stages["tox-${fedora}"] = {
-        stage("tox-${fedora}"){
-            container("${fedora}"){
-                sh "mkdir -p /workdir/home/${fedora}"
-                withEnv(["HOME=/workdir/home/${fedora}"]) {
-                    sh "cp -al ./ ../${fedora}/"
-                    dir( "../${fedora}" ){
+ACTIVE_DISTROS.each { distro ->
+    stages["tox-${distro}"] = {
+        stage("tox-${distro}"){
+            container("${distro}"){
+                sh "mkdir -p /workdir/home/${distro}"
+                withEnv(["HOME=/workdir/home/${distro}"]) {
+                    sh "cp -al ./ ../${distro}/"
+                    dir( "../${distro}" ){
                         sh "rm -rf .tox"
                         try {
                             sh "tox --skip-missing-interpreters"
-                            githubNotify context: "CI on ${fedora}", status: 'SUCCESS', credentialsId: 'status-push-cred'
+                            githubNotify context: "CI on ${distro}", status: 'SUCCESS', credentialsId: 'status-push-cred'
                         } catch(error) {
-                            githubNotify context: "CI on ${fedora}", status: 'FAILURE', credentialsId: 'status-push-cred'
+                            githubNotify context: "CI on ${distro}", status: 'FAILURE', credentialsId: 'status-push-cred'
                             throw error
                         }
                     }
@@ -53,8 +53,8 @@ ACTIVE_DISTROS.each { fedora ->
         }
     }
 
-    fedora_containers.add(containerTemplate(name: "${fedora}",
-                                            image: "quay.io/centosci/python-tox:${fedora}",
+    containers.add(containerTemplate(name: "${distro}",
+                                            image: "quay.io/centosci/python-tox:${distro}",
                                             ttyEnabled: true,
                                             alwaysPullImage: true,
                                             command: "cat",
@@ -64,7 +64,7 @@ ACTIVE_DISTROS.each { fedora ->
 podTemplate(name: 'fedora-tox',
             label: 'fedora-tox',
             cloud: 'openshift',
-            containers: fedora_containers
+            containers: containers
 ){
     node('fedora-tox'){
         ansiColor('xterm'){
