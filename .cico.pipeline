@@ -17,7 +17,7 @@
  * Distros we want to test on
  */
 //def ACTIVE_DISTROS = ["f31", "f32", "epel7", "rawhide"]
-def ACTIVE_DISTROS = ["f33", "f34", "epel7", "latest"]
+def ACTIVE_DISTROS = ["f33", "f34", "latest"]
 
 
 
