@@ -41,7 +41,7 @@ ACTIVE_DISTROS.each { distro ->
                     dir( "../${distro}" ){
                         sh "rm -rf .tox"
                         try {
-                            sh "tox --skip-missing-interpreters"
+                            sh "tox"
                             githubNotify context: "CI on ${distro}", status: 'SUCCESS', credentialsId: 'status-push-cred'
                         } catch(error) {
                             githubNotify context: "CI on ${distro}", status: 'FAILURE', credentialsId: 'status-push-cred'
