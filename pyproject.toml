@@ -31,7 +31,6 @@ include = [
 [tool.poetry.dependencies]
 python = "^3.6.2"
 fedora-messaging = "^2.0.1"
-liccheck = "^0.6.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.3"
@@ -41,6 +40,7 @@ mock = "^4.0"
 bandit = "^1.6"
 black = "*"
 flake8 = "^3.7"
+liccheck = "^0.6.4"
 
 
 [tool.liccheck]
