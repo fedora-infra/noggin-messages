@@ -1,8 +1,11 @@
-name: Auto-approve Dependabot PRs
+name: Approve Dependabot PRs
 on:
-  schedule:
-    - cron: "7 * * * *"
+  push:
+  pull_request:
   workflow_dispatch:
+    inputs:
+      pr-number:
+        required: true
 
 permissions:
   contents: read
@@ -10,13 +13,13 @@ permissions:
 
 jobs:
   auto-approve:
-    name: Auto-approve minor and patch updates
+    name: Approve minor and patch updates
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: koj-co/dependabot-pr-action@master
+      - uses: fastify/github-action-merge-dependabot@v3.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          approve-minor: true
-          approve-patch: true
-
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          target: minor
+          approve-only: true
+          pr-number: ${{ github.event.inputs.pr-number }}
