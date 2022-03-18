@@ -30,7 +30,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
-fedora-messaging = "^2.0.1"
+fedora-messaging = ">=2.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.3"
