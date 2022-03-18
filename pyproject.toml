@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "noggin-messages"
-version = "1.0.0"
+version = "1.0.1"
 description = "Fedora Messaging message schemas for Noggin."
 
 license = "MIT"
