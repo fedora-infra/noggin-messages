@@ -1,0 +1,8 @@
+summary: Check information about the installed package
+require:
+  - rpm
+  - grep
+execute:
+  script:
+    - rpm -qi python3-noggin-messages
+    - rpm -qa | grep python3-noggin-messages
