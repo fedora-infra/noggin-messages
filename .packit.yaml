@@ -1,0 +1,102 @@
+# See the documentation for more information:
+# https://packit.dev/docs/configuration/
+
+specfile_path: python-noggin-messages.spec
+
+# add or remove files that should be synced
+files_to_sync:
+    - python-noggin-messages.spec
+    - 0001-Revert-Include-additional-files-in-the-sdist.patch
+    - 0001-pyproject-Relax-fedora-messaging-dependency-for-pack.patch
+    - README.md
+    - sources
+    - .packit.yaml
+
+
+# name in upstream package repository or registry (e.g. in PyPI)
+upstream_package_name: noggin-messages
+# downstream (Fedora) RPM package name
+downstream_package_name: python-noggin-messages
+
+srpm_build_deps:
+    - wget
+
+actions:
+  post-upstream-clone:
+    # fetch specfile, patches, documentation etc. from the downstream
+    - "wget https://src.fedoraproject.org/fork/t0xic0der/rpms/python-noggin-messages/raw/packit-conf/f/python-noggin-messages.spec -O python-noggin-messages.spec"
+    - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/0001-Revert-Include-additional-files-in-the-sdist.patch -O 0001-Revert-Include-additional-files-in-the-sdist.patch"
+    - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/0001-pyproject-Relax-fedora-messaging-dependency-for-pack.patch -O 0001-pyproject-Relax-fedora-messaging-dependency-for-pack.patch"
+    - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/README.md -O README.md"
+    - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/sources -O sources"
+
+jobs:
+  # upon upstream PRs, perform COPR builds
+  - job: copr_build
+    trigger: pull_request
+    metadata:
+      targets:
+        - fedora-latest-stable
+        - fedora-development
+
+  # upon upstream PRs, test builds
+  - job: tests
+    trigger: pull_request
+    metadata:
+      targets:
+        - fedora-latest-stable
+        - fedora-development
+
+  # upon upstream releases, perform COPR builds
+  - job: copr_build
+    trigger: release
+    metadata:
+      targets:
+        - fedora-latest-stable
+        - fedora-development
+
+  # upon upstream releases, test builds
+  - job: tests
+    trigger: release
+    metadata:
+      targets:
+        - fedora-latest-stable
+        - fedora-development
+
+  # upon downstream changes, create a PR upstream with sync'd files from above
+  - job: sync_from_downstream
+    trigger: commit
+
+  # land upstream release in fedora dist-git - no builds
+  - job: propose_downstream
+    trigger: release
+    metadata:
+      dist_git_branches:
+        - fedora-latest-stable
+        - fedora-development
+
+  # create an srpm from upstream and submit a scratch build to koji
+  - job: production_build
+    trigger: release
+    metadata:
+      targets:
+        - fedora-latest-stable
+        - fedora-development
+
+  # downstream automation
+
+  # trigger a build in koji for a new dist-git commit
+  - job: koji_build
+    trigger: commit
+    metadata:
+      dist_git_branches:
+        - fedora-latest-stable
+        - fedora-development
+
+  # create a new update in bodhi for a successful koji build. directly related to `koji_build`
+  - job: bodhi_update
+    trigger: commit
+    metadata:
+      dist_git_branches:
+        - fedora-latest-stable
+        - fedora-development
