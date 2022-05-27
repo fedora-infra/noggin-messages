@@ -28,7 +28,7 @@ actions:
     - "poetry version -s"
   post-upstream-clone:
     # fetch specfile, patches, documentation etc. from the downstream
-    - "wget https://src.fedoraproject.org/fork/t0xic0der/rpms/python-noggin-messages/raw/packit-conf/f/python-noggin-messages.spec -O python-noggin-messages.spec"
+    - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/python-noggin-messages.spec -O python-noggin-messages.spec"
     - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/0001-Revert-Include-additional-files-in-the-sdist.patch -O 0001-Revert-Include-additional-files-in-the-sdist.patch"
     - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/README.md -O README.md"
     - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/sources -O sources"
