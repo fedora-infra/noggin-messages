@@ -384,7 +384,7 @@ format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-
 
 [[package]]
 name = "liccheck"
-version = "0.7.3"
+version = "0.8.2"
 description = "Check python packages from requirement.txt and report issues"
 category = "dev"
 optional = false
@@ -1246,8 +1246,8 @@ jsonschema = [
     {file = "jsonschema-4.0.0.tar.gz", hash = "sha256:bc51325b929171791c42ebc1c70b9713eb134d3bb8ebd5474c8b659b15be6d86"},
 ]
 liccheck = [
-    {file = "liccheck-0.7.3-py2.py3-none-any.whl", hash = "sha256:3e7185ed89700cfde85e566f9d92b84222618e05126503848f00c81849135e5e"},
-    {file = "liccheck-0.7.3.tar.gz", hash = "sha256:aeda7ef23705619146080a3056ba54d63ee0164807005119f94ab25ab34cd1b2"},
+    {file = "liccheck-0.8.2-py2.py3-none-any.whl", hash = "sha256:a9ca471ed543be4eccde7813481fb70a93a2ba7e29add66f351c655814e38f03"},
+    {file = "liccheck-0.8.2.tar.gz", hash = "sha256:c2937aba67740162fc7db9459e3a6457901d11c02cc47fdb99f3c127b1ffd885"},
 ]
 markupsafe = [
     {file = "MarkupSafe-2.0.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:d8446c54dc28c01e5a2dbac5a25f071f6653e6e40f3a8818e8b45d790fe6ef53"},
