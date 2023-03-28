@@ -74,6 +74,7 @@ authorized_licenses = [
   "GNU Lesser General Public License v3 or later (LGPLv3+)",
   "Apache License, Version 2.0",
   "Zope Public",
+  "The Unlicense (Unlicense)",
 ]
 
 
