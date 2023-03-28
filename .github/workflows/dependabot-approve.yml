@@ -1,25 +1,30 @@
+# Ref: https://blog.somewhatabstract.com/2021/10/11/setting-up-dependabot-with-github-actions-to-approve-and-merge/
+
 name: Approve Dependabot PRs
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
-    inputs:
-      pr-number:
-        required: true
+on: pull_request_target
 
 permissions:
-  contents: read
   pull-requests: write
 
 jobs:
   auto-approve:
-    name: Approve minor and patch updates
     runs-on: ubuntu-latest
+    # Checking the actor will prevent your Action run failing on non-Dependabot
+    # PRs but also ensures that it only does work for Dependabot PRs.
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: fastify/github-action-merge-dependabot@v3.0.0
+      # This first step will fail if there's no metadata and so the approval
+      # will not occur.
+      - name: Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          target: minor
-          approve-only: true
-          pr-number: ${{ github.event.inputs.pr-number }}
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      # Here the PR gets approved if it's not a major update
+      - name: Approve minor and patch updates
+        if: ${{ steps.dependabot-metadata.outputs.update-type != 'version-update:semver-major' }}
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Mergify will do the merging.
