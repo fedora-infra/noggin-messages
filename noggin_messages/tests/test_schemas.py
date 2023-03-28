@@ -37,7 +37,7 @@ class TestSchema:
         )
         msg.validate()
 
-        assert msg.app_name == "fas"
+        assert msg.app_name == "FAS"
         assert msg.agent_name == "dudemcpants"
         assert msg.usernames == ["dudemcpants", "testuser"]
         assert msg.agent_avatar == (
@@ -89,7 +89,7 @@ class TestSchema:
         msg = UserCreateV1({"msg": {"agent": "dudemcpants", "user": "testuser"}})
         msg.validate()
 
-        assert msg.app_name == "fas"
+        assert msg.app_name == "FAS"
         assert msg.agent_name == "dudemcpants"
         assert msg.usernames == ["dudemcpants", "testuser"]
         assert msg.agent_avatar == (
@@ -149,7 +149,7 @@ class TestSchema:
         )
         msg.validate()
 
-        assert msg.app_name == "fas"
+        assert msg.app_name == "FAS"
         assert msg.agent_name == "dudemcpants"
         assert msg.usernames == ["dudemcpants", "testuser"]
         assert msg.agent_avatar == (

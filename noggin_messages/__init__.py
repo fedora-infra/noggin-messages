@@ -1,5 +1,4 @@
 from fedora_messaging import message
-from fedora_messaging.schema_utils import user_avatar_url
 
 
 class NogginMessage(message.Message):
@@ -11,14 +10,14 @@ class NogginMessage(message.Message):
         Returns:
             the name of the application (fas)
         """
-        return "fas"
+        return "FAS"
 
     @property
     def agent_name(self):
         """Return the agent's username for this message.
 
         Returns:
-            The agent's username, or None if the msg has no agent key.
+            The agent's username
         """
         return self.body["msg"]["agent"]
 
@@ -30,16 +29,6 @@ class NogginMessage(message.Message):
             The username this message is about
         """
         return self.body["msg"]["user"]
-
-    @property
-    def agent_avatar(self):
-        """
-        Return a URL to the avatar of the user who caused the action.
-
-        Returns:
-            The URL to the user's avatar, or None if username is None.
-        """
-        return user_avatar_url(self.agent_name)
 
     @property
     def usernames(self):
