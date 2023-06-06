@@ -40,8 +40,6 @@ bandit = ">=1.6"
 black = "*"
 flake8 = ">=3.7"
 liccheck = "*"
-# For the licenses check, follow Poetry's dep
-platformdirs = "^2.5.2"
 
 
 [tool.liccheck]
