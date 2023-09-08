@@ -23,17 +23,17 @@ srpm_build_deps:
 
 actions:
   create-archive:
-    - "poetry build -f sdist"
-    - "sh -c 'echo dist/noggin-messages-$(poetry version -s).tar.gz'"
+    - "/builddir/.local/bin/poetry build -f sdist"
+    - "sh -c 'echo dist/noggin_messages-$(/builddir/.local/bin/poetry version -s).tar.gz'"
   get-current-version:
-    - "poetry version -s"
+    - "/builddir/.local/bin/poetry version -s"
   post-upstream-clone:
     # fetch specfile, patches, documentation etc. from the downstream
     - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/python-noggin-messages.spec -O python-noggin-messages.spec"
     - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/0001-Revert-Include-additional-files-in-the-sdist.patch -O 0001-Revert-Include-additional-files-in-the-sdist.patch"
     - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/README.md -O README.md"
     - "wget https://src.fedoraproject.org/rpms/python-noggin-messages/raw/main/f/sources -O sources"
-    - "sh -c 'wget https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py && python3 install-poetry.py --version 1.1.7 && rm install-poetry.py'"
+    - "sh -c 'curl -sSL https://install.python-poetry.org | python3 -'"
 
 jobs:
   # upon upstream PRs, perform COPR builds
