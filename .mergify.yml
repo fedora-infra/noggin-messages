@@ -7,11 +7,10 @@ queue_rules:
       - status-success=Misc tests (licenses)
       - status-success=Misc tests (security)
       - status-success=Misc tests (docs)
-      - status-success=Unit tests (py37)
       - status-success=Unit tests (py38)
       - status-success=Unit tests (py39)
       - status-success=Unit tests (py310)
-      # - status-success=Unit tests (py311)
+      - status-success=Unit tests (py311)
 
 pull_request_rules:
 
@@ -31,8 +30,7 @@ pull_request_rules:
       - status-success=Misc tests (licenses)
       - status-success=Misc tests (security)
       - status-success=Misc tests (docs)
-      - status-success=Unit tests (py37)
       - status-success=Unit tests (py38)
       - status-success=Unit tests (py39)
       - status-success=Unit tests (py310)
-      # - status-success=Unit tests (py311)
+      - status-success=Unit tests (py311)
