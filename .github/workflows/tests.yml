@@ -1,25 +1,22 @@
-on:
-  push:
-    branches:
-      - stable
-      - dev
-  pull_request:
-    branches:
-      - stable
-      - dev
+on: [push, pull_request]
 
 name: Tests
 
 jobs:
   misc_tests:
     name: Misc tests
+    runs-on: ubuntu-latest
+    container: fedorapython/fedora-python-tox:latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          dnf install -y pre-commit git krb5-devel openldap-devel
+          pip install poetry>=1.2
+      - name: Mark the working directory as safe for Git
+        run: git config --global --add safe.directory $PWD
       - name: Run tests
-        uses: fedora-python/tox-github-action@main
-        with:
-          tox_env: ${{ matrix.tox_env }}
-          dnf_install: krb5-devel openldap-devel
+        run: tox -e ${{ matrix.tox_env }}
     strategy:
       matrix:
         tox_env:
@@ -28,17 +25,21 @@ jobs:
           - licenses
           - security
           - docs
-    runs-on: ubuntu-latest
 
   unit_test:
     name: Unit tests
+    runs-on: ubuntu-latest
+    container: fedorapython/fedora-python-tox:latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          dnf install -y pre-commit git krb5-devel openldap-devel
+          pip install poetry>=1.2
+      - name: Mark the working directory as safe for Git
+        run: git config --global --add safe.directory $PWD
       - name: Run tests
-        uses: fedora-python/tox-github-action@main
-        with:
-          tox_env: ${{ matrix.tox_env }}
-          dnf_install: krb5-devel openldap-devel
+        run: tox -e ${{ matrix.tox_env }}
     strategy:
       matrix:
         tox_env:
@@ -46,5 +47,4 @@ jobs:
           - py38
           - py39
           - py310
-          # - py311
-    runs-on: ubuntu-latest
+          - py311
