@@ -2,13 +2,13 @@ on:
   push:
     branches:
       - stable
-      - dev
+      - develop
     tags:
       - v**
   pull_request:
     branches:
       - stable
-      - dev
+      - develop
 
 name: Tests & Build
 
