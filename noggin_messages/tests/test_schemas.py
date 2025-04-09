@@ -103,7 +103,7 @@ class TestSchema:
         assert msg.groups == ["developers"]
         assert (
             msg.summary
-            == "User dudemcpants removed user testuser from the groupdevelopers"
+            == "User dudemcpants removed user testuser from the group developers"
         )
         assert str(msg) == msg.summary
 

@@ -131,7 +131,7 @@ class MemberRemovedV1(NogginMessage):
             A summary for this message.
         """
         return (
-            f"User {self.agent_name} removed user {self.user_name} from the group"
+            f"User {self.agent_name} removed user {self.user_name} from the group "
             f"{self.groups[0]}"
         )
 
