@@ -28,10 +28,10 @@ include = [
 
 
 [tool.poetry.dependencies]
-python = "^3.8.0"
+python = "^3.10.0"
 fedora-messaging = ">=2.0.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "*"
 pytest-cov = "*"
 sphinx = "*"
